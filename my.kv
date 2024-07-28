@@ -3,11 +3,11 @@
         md_bg_color: self.theme_cls.backgroundColor
 
         MDNavigationLayout:
-
+            
             MDScreenManager:
 
                 MDScreen:
-
+                    
                     MDBoxLayout:
                         size_hint_x: 1
                         adaptive_height: True
@@ -24,29 +24,65 @@
                                 icon_size: "96sp"
                                 pos_hint: {'center_x': 0, 'center_y': 15}
                                 on_release: nav_drawer.set_state("open")
-                            
-
-
 
             MDNavigationDrawer:
                 id: nav_drawer
                 radius: 0, dp(16), dp(16), 0
                 anchor: "left"
 
+
                 MDNavigationDrawerMenu:
 
                     MDNavigationDrawerLabel:
-                        text: "Mail"
+                        text: "Finance Tracker"
 
                     MDNavigationDrawerItem:
-
                         MDNavigationDrawerItemLeadingIcon:
                             icon: "account"
-
                         MDNavigationDrawerItemText:
-                            text: "Inbox"
-
+                            text: "Account"
                         MDNavigationDrawerItemTrailingText:
                             text: "24"
 
                     MDNavigationDrawerDivider:
+
+                    MDNavigationDrawerItem:
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "view-dashboard"
+                        MDNavigationDrawerItemText:
+                            text: "Dashboard"
+                        MDNavigationDrawerItemTrailingText:
+
+                    MDNavigationDrawerItem:
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "account-cash"
+                        MDNavigationDrawerItemText:
+                            text: "Transactions"
+                        MDNavigationDrawerItemTrailingText:
+
+
+                    MDNavigationDrawerItem:
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "chart-box-multiple"
+                        MDNavigationDrawerItemText:
+                            text: "Analytics"
+                        MDNavigationDrawerItemTrailingText:
+                            text: "5"
+
+                    MDNavigationDrawerItem:
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "checkbook-arrow-left"
+                        MDNavigationDrawerItemText:
+                            text: "Budget Goal"
+                        MDNavigationDrawerItemTrailingText:
+                            text: "3"
+
+                    
+
+                    MDNavigationDrawerItem:
+                        MDNavigationDrawerItemLeadingIcon:
+                            icon: "cog"
+                        MDNavigationDrawerItemText:
+                            text: "Settings"
+
+
