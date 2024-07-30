@@ -1,23 +1,49 @@
 <MyGrid>
+
+    name: name
+    email: email
+    password: password
+    re_type_password: re_type_password
+
     GridLayout:
         cols:1
-        size:root.width-100, root.height-100
+        size: root.width-200, root.height-200
+        pos: 100,100
     
-    GridLayout:
-        cols:2
+        GridLayout:
+            cols:2
 
-        Label:
-            text: "Name: "
+            Label:
+                text: "Name: "
+            
+            TextInput:
+                id: name
+                multiline:False
+
+            Label:
+                text: "Email: "
+
+            TextInput:
+                id: email
+                multiline:False
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: password
+                multiline:False
+
+            Label:
+                text: "Re-type password: "
+
+            TextInput:
+                id: re_type_password
+                multiline:False
+
+            
+
         
-        TextInput:
-            multiline:False
-
-        Label:
-            text: "Email: "
-
-        TextInput:
-            multiline:False
-
-        
-    Button:
-        text: "Submit"
+        Button:
+            text: "Submit"
+            on_press: root.btn()
