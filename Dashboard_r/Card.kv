@@ -1,0 +1,28 @@
+<MD3Card>:
+    padding: 4
+    size_hint: None, None
+    size: "250dp", "150dp"
+    md_bg_color: "#f4dedc"  # Background color for filled style
+
+    MDRelativeLayout:
+
+        MDIconButton:
+            icon: "dots-vertical"
+            pos_hint: {"top": 1, "right": 1}
+            on_release: app.open_menu(self)  # Call open_menu with self as argument
+
+        MDLabel:
+            id: label
+            text: root.text
+            adaptive_size: True
+            color: "grey"
+            pos: "12dp", "12dp"
+            bold: True
+
+MDScreen:
+
+    MDBoxLayout:
+        id: box
+        adaptive_size: True
+        spacing: "56dp"
+        pos_hint: {"center_x": .5, "center_y": .8}
