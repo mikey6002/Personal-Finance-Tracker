@@ -1,10 +1,93 @@
 Screen: 
-
+    
     MDCard:
         size_hint: None, None
-        size: 300,400
+        size: 600,600
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         elevation: 10
         padding: 25
         spacing: 25
         orientation: 'vertical'
+
+        MDLabel:
+            id: welcome_label
+            text: "WELCOME"
+            font_size: 40
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        MDTextField:   
+            id: username
+            mode: 'round'
+            hint_text: "username"
+            icon_right: "account"
+            size_hint_x: .85
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            on_text: self.text = self.text.replace(" ", "")
+            write_tab: False
+
+        MDTextField:   
+            id: email
+            mode: 'round'
+            hint_text: "email address"
+            icon_right: "email"
+            size_hint_x: .85
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            on_text: self.text = self.text.replace(" ", "")
+            write_tab: False
+
+        MDTextField:   
+            id: password
+            mode: 'round'
+            hint_text: "password"
+            icon_right: "eye-off"
+            size_hint_x: .85
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+            on_text: self.text = self.text.replace(" ", "")
+            write_tab: False
+
+        MDTextField:   
+            id: repassword
+            mode: 'round'
+            hint_text: "re-type password"
+            icon_right: "eye-off"
+            size_hint_x: .85
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+            on_text: self.text = self.text.replace(" ", "")
+            write_tab: False
+
+        BoxLayout:
+            size_hint_x: .5
+            height: 30
+            pos_hint: {'center_x': 0.5, 'center_y':.4}
+            spacing: -5
+            MDCheckbox:
+                id:passwordcb
+                size_hint_x: .5
+                width: 15
+                height: 15
+                on_press: 
+                    password.password = False if password.password == True else True
+                    password.icon_right = "eye" if password.icon_right == "eye-off" else "eye-off"
+                    repassword.password = False if repassword.password == True else True
+                    repassword.icon_right = "eye" if repassword.icon_right == "eye-off" else "eye-off"
+            MDLabel:
+                text: "[ref=Show Password]Show Password[/ref]"
+                markup: True
+                font_size: 25
+                on_ref_press: 
+                    passwordcb.active = False if passwordcb.password == True else True
+        MDRoundFlatButton:
+            text: "Sign Up"
+            font_size: 25
+            pos_hint: {'center_x': 0.5, 'center_y':.5}
+            on_press: app.signer()
+        
