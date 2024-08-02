@@ -1,0 +1,21 @@
+<Button>:
+    font_size:40
+    color:0.3,0.6,0.7,1
+    size_hint: 0.5, 0.3
+
+<Touch>:
+    Button:
+        pos_hint: {"x":0.5, "top":1}
+        text: "My BTN"
+        
+
+<FloatLayout>:
+   # Button:
+        #pos_hint: {"x":0.5, "top":1}
+       # text: "Ahmet"
+
+    Button: 
+        id: btn
+        pos_hint: {"top":1}
+        text: "Sari" if btn.state == "normal" else "Down"
+        background_color: 0.3, 0.4, 0.4, 1
