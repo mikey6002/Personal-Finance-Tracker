@@ -11,7 +11,7 @@ class MainApp(MDApp):
 
 
     def build(self):
-        self.title = "Sign Up"
+        self.title = "Transactions"
         self.theme_cls.theme_style = "Dark"
         self.theme_cls.primary_palette = "LightBlue"
         return Builder.load_file('transaction.kv')
