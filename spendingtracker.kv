@@ -1,0 +1,116 @@
+<SpendingTracker>:
+BoxLayout:
+    orientation: 'vertical'
+    padding: dp(10)
+    spacing: dp(10)
+    canvas.before:
+        Color:
+            rgba: 0.78, 0.58, 1, 1  # Purple background color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDLabel:
+        text: "Spending Tracker"
+        halign: 'center'
+        font_style: 'H4'
+        bold: True
+        size_hint_y: None
+        height: dp(60)
+
+    MDLabel:
+        text: "Expenses"
+        halign: 'center'
+        font_style: 'H5'
+        size_hint_y: None
+        height: dp(40)
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: dp(50)
+        padding: dp(10)
+        spacing: dp(10)
+        pos_hint: {'center_x': 0.5}
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # White background color for the container
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(10), dp(10), dp(10), dp(10)]
+
+        MDRaisedButton:
+            text: "1M"
+            md_bg_color: (0, 0, 0, 0)  # Transparent background
+            text_color: (0, 0, 0, 1)  # Text color
+
+        MDRaisedButton:
+            text: "6M"
+            md_bg_color: (0, 0, 0, 1)  # Black
+
+        MDRaisedButton:
+            text: "1Y"
+            md_bg_color: (0, 0, 0, 1)  # Black
+
+        MDRaisedButton:
+            text: "ALL TIME"
+            md_bg_color: (0, 0, 0, 1)  # Black
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: None, None
+        size: dp(300), dp(300)
+        pos_hint: {'center_x': 0.5}
+        radius: [dp(10), dp(10), dp(10), dp(10)]
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # White background color for the container
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(10), dp(10), dp(10), dp(10)]
+
+        Image:
+            source: 'pandas_pie_chart.png'
+            size_hint: None, None
+            size: dp(250), dp(150)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            allow_stretch: False
+            keep_ratio: False
+            radius: [dp(10), dp(10), dp(10), dp(10)]  # Rounded corners
+
+        MDLabel:
+            text: "ALL TIME\nTOTAL EXPENSES\n$20,210,230.32"
+            halign: 'center'
+            font_style: 'H6'
+            size_hint_y: None
+            height: dp(100)
+            padding: dp(10), dp(10)
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: None
+        height: dp(60)
+        padding: dp(10)
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # White background color for the container
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [dp(10), dp(10), dp(10), dp(10)]
+
+        MDLabel:
+            text: "Top Spending Categories"
+            halign: 'center'
+            font_style: 'H5'
+            size_hint_y: None
+            height: dp(40)
+            padding: dp(10), dp(10)
+
+    ScrollView:
+        do_scroll_x: False
+
+        MDList:
+            id: category_list
