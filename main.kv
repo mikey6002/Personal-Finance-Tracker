@@ -1,0 +1,62 @@
+Screen:
+    name: "main"
+    MDFloatLayout:
+        md_bg_color: [0.761, 0.592, 0.812, 1]  # Light purple color
+
+        # The following lines are for our logo...
+        Image:
+            source: "piggy_bank_PNG60.png"
+            size_hint: .8, .8
+            pos_hint: {"center_x": .5, "center_y": .65}
+
+        MDLabel: 
+            text: "PersonnalFinance.IO"
+            font_name: "Roboto"
+            font_size: "23sp"
+            pos_hint: {"center_y": .38}
+            halign: "center"
+            color: [34/255, 34/255, 34/255, 1]  # Adjusted color format
+
+        MDLabel: 
+            text: "Welcome to the future of personal finance"
+            font_name: "Roboto"
+            font_size: "13sp"
+            #size_hint_x: None  # Updated to None for proper alignment
+            pos_hint: {"center_x": .5, "center_y": .3}
+            halign: "center"
+            color: [127/255, 127/255, 127/255, 1]  # Adjusted color format
+
+        Button:
+            text: "LOGIN"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .18}
+            background_color: [0.85, 0.85, 0.85, 1]  # Light gray color
+            color: [0, 0, 0, 1]  # Black text
+            font_name: "Roboto"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "login"
+            canvas.before:
+                Color:
+                    rgba: [0.85, 0.85, 0.85, 1]  # Light gray color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        Button:
+            text: "SIGNUP"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .09}
+            background_color: [1, 1, 1, 0]  # Transparent background
+            color: [0, 0, 0, 1]  # Black text
+            font_name: "Roboto"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "signup"
+            canvas.before:
+                Color:
+                    rgba: [0.85, 0.85, 0.85, 1]  # Light gray border
+                Line:
+                    width: 1.2
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
