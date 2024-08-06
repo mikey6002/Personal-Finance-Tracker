@@ -2,19 +2,20 @@ Screen:
     
     MDCard:
         size_hint: None, None
-        size: 600,600
+        size: 310,580
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         elevation: 10
         padding: 25
         spacing: 25
         orientation: 'vertical'
         md_bg_color: [0.0, 0.5, 1.0, 1.0]
+        spacing: 10
 
 
 
         MDLabel:
             id: welcome_label
-            text: "WELCOME"
+            text: "Join Us"
             #color: [1, 1, 1, 1]
             font_size: 40
             halign: 'center'
@@ -32,6 +33,16 @@ Screen:
             pos_hint: {"center_x": 0.5}
             on_text: self.text = self.text.replace(" ", "")
             write_tab: False
+            on_text: app.validate_username(self.text)
+        
+        Label:
+            id: username_error
+            text: ''
+            color: (1, 0, 0, 1)  # Red color for error
+            size_hint_x: .85
+            font_size: 14
+            pos_hint: {"center_x": 0.5}    
+            on_text: app.validate_email(self.text)
 
         MDTextField:   
             id: email
@@ -43,6 +54,15 @@ Screen:
             pos_hint: {"center_x": 0.5}
             on_text: self.text = self.text.replace(" ", "")
             write_tab: False
+            on_text: app.validate_email(self.text)
+        
+        Label:
+            id: email_error
+            text: ''
+            color: (1, 0, 0, 1)  # Red color for error
+            size_hint_x: .85
+            font_size: 14
+            pos_hint: {"center_x": 0.5}
 
         MDTextField:   
             id: password
@@ -55,6 +75,15 @@ Screen:
             password: True
             on_text: self.text = self.text.replace(" ", "")
             write_tab: False
+            on_text: app.validate_password(self.text)
+
+        Label:
+            id: password_error
+            text: ''
+            color: (1, 0, 0, 1)  # Red color for error
+            size_hint_x: .85
+            font_size: 14
+            pos_hint: {"center_x": 0.5}
 
         MDTextField:   
             id: repassword
@@ -67,6 +96,15 @@ Screen:
             password: True
             on_text: self.text = self.text.replace(" ", "")
             write_tab: False
+            on_text: app.validate_repassword(self.text)
+
+        Label:
+            id: repassword_error
+            text: ''
+            color: (1, 0, 0, 1)  # Red color for error
+            size_hint_x: .85
+            font_size: 14
+            pos_hint: {"center_x": 0.5}
 
         BoxLayout:
             size_hint_x: .5
@@ -86,7 +124,7 @@ Screen:
             MDLabel:
                 text: "[ref=Show Password]Show Password[/ref]"
                 markup: True
-                font_size: 25
+                font_size: 15
                 on_ref_press: 
                     passwordcb.active = False if passwordcb.password == True else True
         MDRoundFlatButton:

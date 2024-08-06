@@ -1,9 +1,13 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp 
 from kivymd.uix.selectioncontrol import MDCheckbox
+from kivy.core.window import Window
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+import re
+
+Window.size = (310, 580)
 
 class MainApp(MDApp):
 
@@ -44,8 +48,31 @@ class MainApp(MDApp):
         self.root.ids.password.text = ''
         self.root.ids.repassword.text = ''
 
-        
-        
+    def validate_username(self, text):
+        if not text.strip():
+            self.root.ids.username_error.text = "Username cannot be empty."
+        elif len(text) < 3:
+            self.root.ids.username_error.text = "Username must be at least 3 characters long."
+        else:
+            self.root.ids.username_error.text = ""
+    
+    def validate_email(self, text):
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", text):
+            self.root.ids.email_error.text = "Invalid email address."
+        else:
+            self.root.ids.email_error.text = ""
+
+    def validate_password(self, text):
+        if len(text) < 8:
+            self.root.ids.password_error.text = "Password must be at least 8 characters long."
+        else:
+            self.root.ids.password_error.text = ""
+
+    def validate_repassword(self, text):
+        if text != self.root.ids.password.text:
+            self.root.ids.repassword_error.text = "Passwords do not match."
+        else:
+            self.root.ids.repassword_error.text = ""
 
     
 MainApp().run()
