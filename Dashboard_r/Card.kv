@@ -1,10 +1,66 @@
 <MD3Card>:
+    pos_hint: {"x": 0.2, "y": 0.3}
     padding: 4
     size_hint: None, None
-    size: "250dp", "150dp"
-    md_bg_color: "#f4dedc"  # Background color for filled style
+    size: "283dp", "190dp"
+    md_bg_color: "#333E52"  # Background color for filled style
 
     MDRelativeLayout:
+        Image:
+            source: 'Personal-Finance-Tracker/Assets/UpArrow.png'  # Update with your image path
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: None, None
+            size: "30dp", "30dp"  # Adjust size 
+            pos_hint: {"center_x": .1, "center_y": .5}  # Center the image in the card
+        
+        MDLabel:
+            text: 'Income'  # Add any additional text 
+            adaptive_size: True
+            color: "black"
+            pos_hint: {"center_x": .24, "center_y": .47}
+            font_size: "12sp"
+
+
+        Image:
+            source: 'Personal-Finance-Tracker/Assets/DownArrow.png'  # Update with your image path
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: None, None
+            size: "30dp", "30dp"  # Adjust size 
+            pos_hint: {"center_x": .6, "center_y": .5}  # Center the image in the card
+        
+        MDLabel:
+            text: 'Expense'  # Add any additional text 
+            adaptive_size: True
+            color: "black"
+            pos_hint: {"center_x": .75, "center_y": .47}
+            font_size: "12sp"
+        
+        
+        MDLabel:
+            text: '$7,030.98' 
+            adaptive_size: True
+            color: "black"
+            pos_hint: {"center_x": .3, "center_y": .55}
+            font_size: "16sp"
+
+        
+        MDLabel:
+            text: '$3,030.98' 
+            adaptive_size: True
+            color: "black"
+            pos_hint: {"center_x": .8, "center_y": .55}
+            font_size: "16sp"
+        
+
+        MDLabel:
+            text: '$15,030.98' 
+            adaptive_size: True
+            color: "black"
+            pos_hint: {"center_x": .35, "center_y": .8}
+            font_size: "30sp"
+        
 
         MDIconButton:
             icon: "dots-vertical"
@@ -20,9 +76,54 @@
             bold: True
 
 MDScreen:
+    ScrollView:
+        MDBoxLayout:
+            id: box
+            orientation: 'vertical'
+            elevation: 4
+            pos_hint: {"center_x": .5, "center_y": .9}
+            adaptive_size: True
+            spacing: "56dp"
+            padding: "12dp"
+            # Ensure the ScrollView expands to fill the screen height
+            size_hint_y: None
+            height: self.minimum_height
 
-    MDBoxLayout:
-        id: box
-        adaptive_size: True
-        spacing: "56dp"
-        pos_hint: {"center_x": .5, "center_y": .8}
+    
+    
+    MDScreen:
+        MDCard:
+            radius: 46, 46, 46, 46
+            size_hint: .5, .3
+            pos_hint: {"center_x": .5, "center_y": .52}
+            elevation: 4
+            shadow_softness: 8
+            shadow_offset: (-2, 2)
+
+            BoxLayout:
+                orientation: 'vertical'
+                
+                Image:
+                    source: 'Personal-Finance-Tracker/Assets/spending_plot.png'  # Update with your image path
+                    allow_stretch: True
+                    keep_ratio: False
+                    size_hint_y: .7  # Adjust size hint for the image
+
+        MDCard:
+            radius: 46, 46, 46, 46
+            size_hint: .5, .3
+            pos_hint: {"center_x": .5, "center_y": .2}
+            elevation: 4
+            shadow_softness: 8
+            shadow_offset: (-2, 2)
+
+            BoxLayout:
+                orientation: 'vertical'
+                
+                Image:
+                    source: 'Personal-Finance-Tracker/Assets/Pie-Chart.jpg'  # Update with your image path
+                    allow_stretch: True
+                    keep_ratio: False
+                    size_hint_y: .7  # Adjust size hint for the image
+
+
