@@ -1,0 +1,87 @@
+ScreenManager:
+    BudgetScreen:
+
+<BudgetScreen>:
+    name: 'budget'
+
+    ScrollView:
+        scroll_y: 1  # Start from the top
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: dp(50)
+            spacing: dp(50)
+            size_hint_y: None
+            height: self.minimum_height
+
+            MDLabel:
+                text: 'Please enter your financial details. Leave blank if not applicable.'
+                halign: 'center'
+                font_style: 'H5'
+
+            MDTextField:
+                id: income
+                hint_text: "Income"
+                helper_text: "Enter your monthly income"
+                helper_text_mode: "on_focus"
+
+            MDTextField:
+                id: bills
+                hint_text: "Monthly Bills"
+                helper_text: "Enter your total water, gas, electric, wifi, etc. bills"
+                helper_text_mode: "on_focus"
+
+            MDTextField:
+                id: loans
+                hint_text: "Monthly Loans"
+                helper_text: "Enter loans like credit card, mortgage"
+                helper_text_mode: "on_focus"
+
+            MDTextField:
+                id: entertainment
+                hint_text: "Entertainment Expenses"
+                helper_text: "Subscriptions, going out, concerts this month"
+                helper_text_mode: "on_focus"
+
+            MDTextField:
+                id: rent
+                hint_text: "Rent"
+                helper_text: "Enter your total rent cost"
+                helper_text_mode: "on_focus"
+
+            MDTextField:
+                id: groceries
+                hint_text: "Groceries"
+                helper_text: "Enter the cost of groceries this month"
+                helper_text_mode: "on_focus"
+
+            MDTextField:
+                id: insurance
+                hint_text: "Insurance"
+                helper_text: "Enter the cost of insurance this month"
+                helper_text_mode: "on_focus"
+            
+            MDTextField:
+                id: misc
+                hint_text: "MISC"
+                helper_text: "Enter the toal cost of all misc things i.e computer parts"
+                helper_text_mode: "on_focus"
+
+            MDTextField:
+                id: savings
+                hint_text: "Total Savings"
+                helper_text: "Enter your total savings,checkings"
+                helper_text_mode: "on_focus"
+
+            MDRaisedButton:
+                text: "Submit"
+                pos_hint: {'center_x': 0.5}
+                on_release: app.submit_data()
+
+            MDProgressBar:
+                id: progress_bar
+                value: 0
+                max: 100
+                size_hint_y: None
+                height: dp(4)
+                pos_hint: {'center_x': 0.5}
+                opacity: 0
