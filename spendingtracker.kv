@@ -42,24 +42,39 @@ BoxLayout:
 
         MDRaisedButton:
             text: "1M"
-            md_bg_color: (0, 0, 0, 0)  # Transparent background
+            md_bg_color: (1, 1, 1, 1)  # Transparent background
             text_color: (0, 0, 0, 1)  # Text color
+            size_hint: None, None
+            elevation: 0
+
 
         MDRaisedButton:
             text: "6M"
-            md_bg_color: (0, 0, 0, 1)  # Black
+            md_bg_color: (1, 1, 1, 1)  # Black
+            text_color: (0, 0, 0, 1)  # Text color
+            elevation: 0
+            size_hint: None, None
 
         MDRaisedButton:
             text: "1Y"
-            md_bg_color: (0, 0, 0, 1)  # Black
+            md_bg_color: (1, 1, 1, 1)  # Black
+            text_color: (0, 0, 0, 1)  # Text color
+            elevation: 0
+            size_hint: None, None
 
         MDRaisedButton:
             text: "ALL TIME"
-            md_bg_color: (0, 0, 0, 1)  # Black
+            md_bg_color: (1, 1, 1, 1)  # Black
+            text_color: (0, 0, 0, 1)  # Text color
+            elevation: 0
+            size_hint: None, None
+            text_size: self.size  # Allow text to wrap
+
 
     BoxLayout:
         orientation: 'vertical'
         size_hint: None, None
+        size_hint_x: 0.95
         size: dp(300), dp(300)
         pos_hint: {'center_x': 0.5}
         radius: [dp(10), dp(10), dp(10), dp(10)]
@@ -71,14 +86,11 @@ BoxLayout:
                 size: self.size
                 radius: [dp(10), dp(10), dp(10), dp(10)]
 
-        Image:
-            source: 'pandas_pie_chart.png'
-            size_hint: None, None
-            size: dp(250), dp(150)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            allow_stretch: False
-            keep_ratio: False
-            radius: [dp(10), dp(10), dp(10), dp(10)]  # Rounded corners
+        MDBoxLayout:
+            id: chart_box
+            adaptive_height: True
+            padding: dp(24)
+            orientation: "vertical"
 
         MDLabel:
             text: "ALL TIME\nTOTAL EXPENSES\n$20,210,230.32"
