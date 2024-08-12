@@ -14,6 +14,7 @@
             size: "30dp", "30dp"  # Adjust size 
             pos_hint: {"center_x": .1, "center_y": .5}  # Center the image in the card
         
+        
         MDLabel:
             text: 'Income'  # Add any additional text 
             adaptive_size: True
@@ -37,7 +38,7 @@
             pos_hint: {"center_x": .75, "center_y": .47}
             font_size: "12sp"
         
-        
+        # Skeleton for income
         MDLabel:
             text: '$7,030.98' 
             adaptive_size: True
@@ -45,7 +46,7 @@
             pos_hint: {"center_x": .3, "center_y": .55}
             font_size: "16sp"
 
-        
+        # Skeleton for expense
         MDLabel:
             text: '$3,030.98' 
             adaptive_size: True
@@ -53,7 +54,7 @@
             pos_hint: {"center_x": .8, "center_y": .55}
             font_size: "16sp"
         
-
+        # Skeleton for income
         MDLabel:
             text: '$15,030.98' 
             adaptive_size: True
@@ -90,40 +91,5 @@ MDScreen:
             height: self.minimum_height
 
     
-    
-    MDScreen:
-        MDCard:
-            radius: 46, 46, 46, 46
-            size_hint: .5, .3
-            pos_hint: {"center_x": .5, "center_y": .52}
-            elevation: 4
-            shadow_softness: 8
-            shadow_offset: (-2, 2)
-
-            BoxLayout:
-                orientation: 'vertical'
-                
-                Image:
-                    source: 'Personal-Finance-Tracker/Assets/spending_plot.png'  # Update with your image path
-                    allow_stretch: True
-                    keep_ratio: False
-                    size_hint_y: .7  # Adjust size hint for the image
-
-        MDCard:
-            radius: 46, 46, 46, 46
-            size_hint: .5, .3
-            pos_hint: {"center_x": .5, "center_y": .2}
-            elevation: 4
-            shadow_softness: 8
-            shadow_offset: (-2, 2)
-
-            BoxLayout:
-                orientation: 'vertical'
-                
-                Image:
-                    source: 'Personal-Finance-Tracker/Assets/Pie-Chart.jpg'  # Update with your image path
-                    allow_stretch: True
-                    keep_ratio: False
-                    size_hint_y: .7  # Adjust size hint for the image
 
 

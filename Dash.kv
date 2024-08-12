@@ -1,0 +1,132 @@
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+
+
+
+MDScreen:
+
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "Dashboard"
+                        elevation: 4
+                        pos_hint: {"top": 1}
+                        md_bg_color: "#e7e4c0"
+                        specific_text_color: "#4a4939"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+
+                        MDBoxLayout:
+                            orientation: 'vertical'
+                            size_hint_y: None
+                            height: self.minimum_height
+                            padding: dp(20)  # Overall padding
+                            spacing: dp(30)  # Space between major elements
+
+                            MDCard:
+                                size_hint: None, None
+                                size: "300dp", "180dp"
+                                pos_hint: {"center_x": 0.5}
+                                md_bg_color: "#00008b"
+                                radius: [15, 15, 15, 15]
+                                
+                                BoxLayout:
+                                    orientation: "vertical"
+                                    padding: dp(20)  # Padding inside card
+                                    spacing: dp(10)  # Space between elements in card
+                                    
+                                    MDLabel:
+                                        text: "CARDHOLDER NAME"
+                                        font_size: "12sp"
+                                        color: 1, 1, 1, 1
+                                    
+                                    MDLabel:
+                                        text: "1234 5678 9101 1121"
+                                        font_style: "H5"
+                                        color: 1, 1, 1, 1
+                                        
+                                    MDLabel:
+                                        text: "Valid Thru: 12/24"
+                                        font_size: "12sp"
+                                        color: 1, 1, 1, 1
+                                        
+                                    MDLabel:
+                                        text: "BANK NAME"
+                                        halign: "right"
+                                        font_size: "12sp"
+                                        color: 1, 1, 1, 1
+
+                            BoxLayout:
+                                id: chart_box
+                                size_hint: None, None
+                                size: dp(300), dp(300)
+                                pos_hint: {"center_x": 0.7}
+
+                            AnchorLayout:
+                                id: data_table_box
+                                size_hint_y: None
+                                height: dp(400)  # Set this to your desired height
+                                anchor_x: 'center'
+                                anchor_y: 'top'
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerHeader:
+                    title: "Finance Tracker"
+                    title_color: "#4a4939"
+                    text: "Jake The Dog"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "56dp"
+
+                DrawerClickableItem:
+                    icon: "account"
+                    right_text: "2"
+                    text_right_color: "#4a4939"
+                    text: "Account"
+
+                MDNavigationDrawerDivider:
+
+                DrawerClickableItem:
+                    icon: "view-dashboard"
+                    text: "Dashboard"
+                
+                DrawerClickableItem:
+                    icon: "account-cash"
+                    text: "Transactions"
+                
+                DrawerClickableItem:
+                    icon: "chart-areaspline"
+                    text: "Analytics"
+                
+                DrawerClickableItem:
+                    icon: "checkbook-arrow-left"
+                    text: "Budget Goal"
+                
+                DrawerClickableItem:
+                    icon: "cog"
+                    text: "Settings"
