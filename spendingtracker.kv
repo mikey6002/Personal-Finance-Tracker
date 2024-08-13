@@ -5,7 +5,7 @@ BoxLayout:
     spacing: dp(10)
     canvas.before:
         Color:
-            rgba: 0.78, 0.58, 1, 1  # Purple background color
+            rgba: 0.761, 0.592, 0.812, 1  # Purple background color
         Rectangle:
             pos: self.pos
             size: self.size
@@ -71,7 +71,7 @@ BoxLayout:
             text_size: self.size  # Allow text to wrap
 
 
-    BoxLayout:
+    MDBoxLayout:
         orientation: 'vertical'
         size_hint: None, None
         size_hint_x: 0.95
@@ -89,8 +89,9 @@ BoxLayout:
         MDBoxLayout:
             id: chart_box
             adaptive_height: True
-            padding: dp(24)
+            padding: dp(5)
             orientation: "vertical"
+            size: dp(300), dp(300)
 
         MDLabel:
             text: "ALL TIME\nTOTAL EXPENSES\n$20,210,230.32"
@@ -100,10 +101,10 @@ BoxLayout:
             height: dp(100)
             padding: dp(10), dp(10)
 
-    BoxLayout:
+    MDBoxLayout:
         orientation: 'vertical'
         size_hint_y: None
-        height: dp(60)
+        height: self.minimum_height
         padding: dp(10)
         canvas.before:
             Color:
@@ -121,8 +122,9 @@ BoxLayout:
             height: dp(40)
             padding: dp(10), dp(10)
 
-    ScrollView:
-        do_scroll_x: False
+        ScrollView:
+            size_hint_y: None
+            height: dp(175)  # Adjust this height to fit your design
 
-        MDList:
-            id: category_list
+            MDList:
+                id: category_list

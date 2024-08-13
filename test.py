@@ -26,7 +26,7 @@ class SpendingTrackerApp(MDApp):
             items=self.items,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
             size_hint=[None, None],
-            size=(dp(300), dp(300)),
+            size=(dp(175), dp(175)),
         )
         self.root.ids.chart_box.add_widget(self.piechart)
 
@@ -38,7 +38,7 @@ class SpendingTrackerApp(MDApp):
 
         category_list = self.root.ids.category_list
         for category, amount in categories:
-            item = OneLineListItem(text=f"{category:<25} {amount:>20}")
+            item = OneLineListItem(text=f"{category:<25} {amount:>21}")
             category_list.add_widget(item)
 
 if __name__ == '__main__':
