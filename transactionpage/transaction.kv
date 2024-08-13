@@ -1,8 +1,8 @@
-Screen: 
-    
+Screen:
+
     MDCard:
         size_hint: None, None
-        size: 600,600
+        size: 600, 600
         md_bg_color: [0.0, 0.5, 1.0, 1.0]
         pos_hint: {"center_x": 0.5, "center_y": 0.5}
         elevation: 10
@@ -24,11 +24,12 @@ Screen:
             height: self.minimum_height
             spacing: 10
             padding: 10, 0
+
             MDRaisedButton:
                 id: dates
                 pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 text: 'Pick Dates'
-                color: (1,1,1,1)
+                color: (1, 1, 1, 1)
                 on_release: app.dates_dropper()
                 text_size: self.size
                 padding_x: 10
@@ -42,20 +43,20 @@ Screen:
                 id: categories
                 pos_hint: {'center_x': .5, 'center_y': 0.5}
                 text: 'All Categories'
-                color: (1,1,1,1)
+                color: (1, 1, 1, 1)
                 on_release: app.categories_dropper()
                 text_size: self.size
                 halign: 'right'
                 padding_x: 10 
-            
-            MDDataTable:
-                column_data = [
-                    ("Transaction Name", dp(30)),
-                    ("Transaction Date", dp(30)),
-                    ("Transaction Amount", dp(30))
-                ]
 
-                row_data = []
+        MDBoxLayout:
+            id: data_table_box
+            size_hint_y: None
+            height: dp(400)
+            
+            
+
+                
 
 
 
