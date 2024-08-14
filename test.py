@@ -21,7 +21,7 @@ class SpendingTrackerApp(MDApp):
         Builder.load_file('spendingtracker.kv')
 
     def on_start(self):
-        self.items = [{"Python": 70, "Dart": 10, "C#": 10, "Css": 10}]
+        self.items = [{"Shopping": 62, "Entertainment": 37, "Food & Drink": 1}]
         self.piechart = AKPieChart(
             items=self.items,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
@@ -40,6 +40,9 @@ class SpendingTrackerApp(MDApp):
         for category, amount in categories:
             item = OneLineListItem(text=f"{category:<25} {amount:>21}")
             category_list.add_widget(item)
+
+    def remove_chart(self):
+        self.root.ids.chart_box.remove_widget(self.piechart)
 
 if __name__ == '__main__':
     SpendingTrackerApp().run()
