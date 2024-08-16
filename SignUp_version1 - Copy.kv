@@ -1,0 +1,96 @@
+Screen:
+    name: "signup"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: [0.1, 0.1, 0.1, 1]  # Adjust text color
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "main"
+
+        MDLabel:
+            text: "H i !"
+            font_name: "Roboto"
+            font_size: "23sp"
+            pos_hint: {"center_x": .6, "center_y": .85}
+            color: [0, 0, 0.23, 1]  # Adjusted color format
+
+        MDLabel: 
+            text: "Create a new account"
+            font_name: "Roboto"
+            font_size: "18sp"
+            pos_hint: {"center_x": .6, "center_y": .79}
+            color: [0.53, 0.53, 0.76, 1]  # Adjusted color format
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .68}
+            TextInput: 
+                hint_text: "Username"
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: [0, 0, 0.23, 1]
+                cursor_color: [0, 0, 0.23, 1]
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .44}
+            TextInput: 
+                id: password
+                hint_text: "Password"
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: [0, 0, 0.23, 1]
+                cursor_color: [0, 0, 0.23, 1]
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .56}
+            TextInput: 
+                id: email
+                hint_text: "Email"
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: [0, 0, 0.23, 1]
+                cursor_color: [0, 0, 0.23, 1]
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+        Button:
+            text: "Continue"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .3}
+            background_color: [0.85, 0.85, 0.85, 1]  # Light gray color
+            color: [0, 0, 0, 1]  # Black text
+            font_name: "Roboto"
+            on_release:
+                #app.send_data(email, password)
+                root.manager.transition.direction = "left"
+                root.manager.current = "questionare"
+            canvas.before:
+                Color:
+                    rgba: [0.85, 0.85, 0.85, 1]  # Light gray color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]

@@ -1,0 +1,126 @@
+Screen:
+    name: "login"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: [0.1, 0.1, 0.1, 1]  # Adjust text color
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "main"
+
+        MDLabel:
+            text: "W E L C O M E"
+            font_name: "Roboto"
+            font_size: "23sp"
+            pos_hint: {"center_x": .6, "center_y": .85}
+            color: [0, 0, 0.23, 1]  # Adjusted color format
+
+        MDLabel: 
+            text: "Sign in to continue"
+            font_name: "Roboto"
+            font_size: "18sp"
+            pos_hint: {"center_x": .6, "center_y": .79}
+            color: [0.53, 0.53, 0.76, 1]  # Adjusted color format
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .63}
+            TextInput:
+                id: email 
+                hint_text: "Email"
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: [0, 0, 0.23, 1]
+                cursor_color: [0, 0, 0.23, 1]
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+
+        MDFloatLayout: 
+            pos_hint: {"center_x": .45, "center_y": .0}
+            size_hint_y: .03
+            md_bg_color: [0.7, 0.7, 0.7, 1]  # Light gray background
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .5}
+            TextInput: 
+                id: password
+                hint_text: "Password"
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: [0, 0, 0.23, 1]
+                cursor_color: [0, 0, 0.23, 1]
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+
+        MDFloatLayout: 
+            pos_hint: {"center_x": .45, "center_y": .0}
+            size_hint_y: .03
+            md_bg_color: [0.7, 0.7, 0.7, 1]  # Light gray background
+
+        Button:
+            text: "LOGIN"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .34}
+            background_color: [0.85, 0.85, 0.85, 1]  # Light gray color
+            color: [0, 0, 0, 1]  # Black text
+            font_name: "Roboto"
+            on_release:
+                app.recieve_data(email, password)
+                #root.manager.transition.direction = "left"
+                #root.manager.current = "login"
+            canvas.before:
+                Color:
+                    rgba: [0.85, 0.85, 0.85, 1]  # Light gray color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        MDTextButton:
+            text: "Forgot Password?"
+            pos_hint: {"center_x": .5, "center_y": .28}
+            color: [68/255, 78/255, 132/255, 1]
+            font_size: "12sp"
+            font_name: "Roboto"
+
+        MDLabel:
+            text: "or"
+            color: [0.2, 0, 0.9, 1]  # Adjusted color format
+            pos_hint: {"center_y": .22}
+            font_size: "13sp"
+            font_name: "Roboto"
+            halign: "center"
+
+        MDFloatLayout:
+            md_bg_color: [0.7, 0.7, 0.7, 1]  # Light gray background
+            size_hint: .3, .002
+            pos_hint: {"center_x": .3, "center_y": .218}
+
+        MDFloatLayout:
+            md_bg_color: [0.7, 0.7, 0.7, 1]  # Light gray background
+            size_hint: .3, .002
+            pos_hint: {"center_x": .7, "center_y": .218}
+        
+        MDTextButton: 
+            text: "Dont have an account? Sign Up" 
+            font_name: "Roboto"
+            font_size: "13sp"
+            halign: "center"
+            pos_hint: {"center_x": .5, "center_y": .15}
+            color: rgba(135, 133, 193, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "signup"
