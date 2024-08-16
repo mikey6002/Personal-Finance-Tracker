@@ -6,6 +6,9 @@ from kivy.metrics import dp
 from kivy.core.window import Window
 from kivymd_extensions.akivymd.uix.charts import AKPieChart
 from kivymd.uix.datatables import MDDataTable
+import csv
+import os
+
 
 Window.fullscreen = False
 Window.size = (380, 640)
@@ -21,7 +24,23 @@ class Example(MDApp):
         return Builder.load_file('Dash.kv')
 
     def on_start(self):
-        self.items = [{"Python": 70, "Dart": 10, "C#": 10, "Css": 10}]
+        # Load data from the CSV file 
+        csv_file_path = 'user_data.csv'  # path of file
+        if not os.path.exists(csv_file_path):
+            print(f"File {csv_file_path} not found.")
+            return
+
+        with open(csv_file_path, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            row = next(reader)  # Assuming only one row of data
+            
+            # Sum up all the values except "Income"
+            total = sum(float(value) for key, value in row.items() if key != "Income")
+            
+            # Calculate percentages for pie chart
+            self.items = [{key: (float(value) / total) * 100 for key, value in row.items() if key != "Income"}]
+
+        # Create the pie chart with the CSV data
         self.piechart = AKPieChart(
             items=self.items,
             pos_hint={"center_x": 0.5, "center_y": 0.5},
@@ -30,22 +49,22 @@ class Example(MDApp):
         )
         self.root.ids.chart_box.add_widget(self.piechart)
 
+        # Prepare data for the table
+        table_data = []
+        for key, value in row.items():
+            if key != "Income":
+                table_data.append((key, f"${float(value):.2f}"))
+
         # Create and add the datatable
         self.data_table = MDDataTable(
             size_hint=(None, None),
-            size=(dp(300), dp(400)),  # Set the size directly here
+            size=(dp(300), dp(400)),
             use_pagination=True,
             column_data=[
-                ("Date", dp(20)),
-                ("Description", dp(20)),
-                ("Amount", dp(20)),
+                ("Category", dp(40)),
+                ("Amount", dp(30)),
             ],
-            row_data=[
-                ("01/01", "Groceries", "$50"),
-                ("01/02", "Gas", "$30"),
-                ("01/03", "Restaurant", "$45"),
-                # Add more rows as needed
-            ],
+            row_data=table_data,
         )
         self.root.ids.data_table_box.add_widget(self.data_table)
 

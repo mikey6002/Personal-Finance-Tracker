@@ -12,21 +12,17 @@
     selected_color: "#4a4939"
     _no_ripple_effect: True
 
-
-
 MDScreen:
-
+    name: "dashboard"
+    
     MDNavigationLayout:
-
         MDScreenManager:
-
             MDScreen:
-
                 MDBoxLayout:
                     orientation: 'vertical'
 
                     MDTopAppBar:
-                        title: "Dashboard"
+                        title: "navbar"
                         elevation: 4
                         pos_hint: {"top": 1}
                         md_bg_color: "#e7e4c0"
@@ -41,8 +37,8 @@ MDScreen:
                             orientation: 'vertical'
                             size_hint_y: None
                             height: self.minimum_height
-                            padding: dp(20)  # Overall padding
-                            spacing: dp(30)  # Space between major elements
+                            padding: dp(20)
+                            spacing: dp(30)
 
                             MDCard:
                                 size_hint: None, None
@@ -53,8 +49,8 @@ MDScreen:
                                 
                                 BoxLayout:
                                     orientation: "vertical"
-                                    padding: dp(20)  # Padding inside card
-                                    spacing: dp(10)  # Space between elements in card
+                                    padding: dp(20)
+                                    spacing: dp(10)
                                     
                                     MDLabel:
                                         text: "CARDHOLDER NAME"
@@ -78,24 +74,24 @@ MDScreen:
                                         color: 1, 1, 1, 1
 
                             BoxLayout:
-                                id: chart_box
+                                id: pie_chart
                                 size_hint: None, None
                                 size: dp(300), dp(300)
-                                pos_hint: {"center_x": 0.7}
+                                pos_hint: {"center_x": 0.5}
 
                             AnchorLayout:
-                                id: data_table_box
+                                id: data_table
                                 size_hint_y: None
-                                height: dp(400)  # Set this to your desired height
+                                height: dp(400)
                                 anchor_x: 'center'
                                 anchor_y: 'top'
+                            
 
         MDNavigationDrawer:
             id: nav_drawer
             radius: (0, 16, 16, 0)
 
             MDNavigationDrawerMenu:
-
                 MDNavigationDrawerHeader:
                     title: "Finance Tracker"
                     title_color: "#4a4939"
