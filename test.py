@@ -31,9 +31,12 @@ class SpendingTrackerApp(MDApp):
         self.root.ids.chart_box.add_widget(self.piechart)
 
         categories = [
-            ("Food & Drink", "$200.00"),
-            ("Shopping", "$5,200,000"),
+            ("Monthly Bills", "$200.00"),
+            ("Loans", "$5,200,000"),
             ("Entertainment", "$3,200,000")
+            ("Rent", "$200.00"),
+            ("Groceries", "$5,200,000"),
+            ("Misc", "$3,200,000")
         ]
 
         category_list = self.root.ids.category_list
