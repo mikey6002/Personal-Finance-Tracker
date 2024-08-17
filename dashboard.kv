@@ -1,0 +1,22 @@
+<DashboardScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: income
+            text: "Income: $0"
+            color: 0, 0, 0, 1  # Black color
+            size_hint_y: None
+            height: dp(50)
+        Label:
+            id: groceries
+            text: "Groceries: "
+            color: 0, 0, 0, 1  # Black color
+        Label:
+            id: savings
+            text: "Savings: "
+            color: 0, 0, 0, 1  # Black color
+        BoxLayout:
+            id: graph_canvas  # This will hold the graph image
+            size_hint_y: None
+            height: dp(300)  # Adjust the height as needed
+            width: self.width
