@@ -77,16 +77,16 @@ Screen:
                 cursor_width: "2sp"
                 multiline: False
         Button:
-            text: "SIGNUP"
+            text: "Continue"
             size_hint: .66, .065
             pos_hint: {"center_x": .5, "center_y": .3}
             background_color: [0.85, 0.85, 0.85, 1]  # Light gray color
             color: [0, 0, 0, 1]  # Black text
             font_name: "Roboto"
             on_release:
-                app.send_data(email, password)
+                #app.send_data(email, password)
                 root.manager.transition.direction = "left"
-                root.manager.current = "userinformationsurvey"
+                root.manager.current = "questionare"
             canvas.before:
                 Color:
                     rgba: [0.85, 0.85, 0.85, 1]  # Light gray color
