@@ -12,6 +12,7 @@ from kivymd.uix.button import MDFlatButton
 from kivymd.uix.datatables import MDDataTable
 from kivymd_extensions.akivymd.uix.charts import AKPieChart
 from kivy.metrics import dp
+from kivy.uix.label import Label
 from decimal import Decimal, ROUND_HALF_UP
 
 # Enable the virtual keyboard
@@ -46,6 +47,7 @@ def read_csv_data(file_path, user_email):
         print(f"Error reading CSV file: {e}")
 
     return formatted_rows
+
 
 
 
@@ -132,7 +134,8 @@ class Start_Screen(MDApp):
         else:
             progress_bar.opacity = 0
             return False
-        
+    
+
     def get_user_data_from_csv(email):
         user_data = {}
         try:

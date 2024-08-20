@@ -30,7 +30,7 @@ Screen:
         MDFloatLayout:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .68}
-            TextInput: 
+            MDTextField: 
                 hint_text: "Username"
                 font_name: "Roboto"
                 size_hint_y: .75
@@ -41,7 +41,8 @@ Screen:
                 font_size: "14sp"
                 cursor_width: "2sp"
                 multiline: False
-                password: True
+                password: False
+                required: True
 
         MDFloatLayout:
             size_hint: .7, .07
@@ -49,6 +50,23 @@ Screen:
             TextInput: 
                 id: password
                 hint_text: "Password"
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: [0, 0, 0.23, 1]
+                cursor_color: [0, 0, 0.23, 1]
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+        
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .32}
+            TextInput: 
+                id: repassword
+                hint_text: "RePassword"
                 font_name: "Roboto"
                 size_hint_y: .75
                 pos_hint: {"center_x": .43, "center_y": .5}
@@ -79,7 +97,7 @@ Screen:
         Button:
             text: "Continue"
             size_hint: .66, .065
-            pos_hint: {"center_x": .5, "center_y": .3}
+            pos_hint: {"center_x": .5, "center_y": .2}
             background_color: [0.85, 0.85, 0.85, 1]  # Light gray color
             color: [0, 0, 0, 1]  # Black text
             font_name: "Roboto"
