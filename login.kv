@@ -95,6 +95,9 @@ Screen:
             color: [68/255, 78/255, 132/255, 1]
             font_size: "12sp"
             font_name: "Roboto"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "rickroll"
 
         MDLabel:
             text: "or"

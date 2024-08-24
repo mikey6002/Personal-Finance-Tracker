@@ -1,7 +1,9 @@
-email,password,income,monthly_bills,loans,entertainment,rent,groceries,insurance,misc,savings
-Zanett123@hotmail.com,123,100,200,300,400,500,600,700,800,900
+email,password,income,monthly_bills,loans,entertainment,rent,groceries,insurance,misc,savings,cardname, cardnumber, expirationdate, ficoscore, tranaction1date, transaction1name, transaction1ammount, tranaction2date, transaction2name, transaction2ammount, tranaction3date, transaction3name, transaction3ammount, tranaction4date, transaction4name, transaction4ammount, tranaction5date, transaction5name, transaction5ammount
+Zanett123@hotmail.com,1234,100,200,300,400,500,600,700,800,900
 Barrylin@gmail.com,123456,100,200,300,400,500,600,700,800,900
 Ahmet123@yahoo.com,123456789,100,200,300,400,500,600,700,800,900
 Olamide1234@yahoo.com,123,7500,500,200,100,1500,200,150,,10000
 Felipe123@gmail.com,123,90000,800,100,500,2500,500,200,100,50000
 gamer@.com,123,1231,231,23,123123,123,123,,123,1234
+Z@gmail.com,321,1000,500,300,,,,,,
+chowmein123@hotpot.com,123,9000,1500,500,300,2500,400,200,50,50000,chun li,4444444444444444,44/23,750,10/12/2000,Amazon,50,10/15/2000,Walmart,70,10/31/2000,Target,156.65,11/16/2000,McDonalds,25.41,12/31/2000,Eddie Bawer,75.48

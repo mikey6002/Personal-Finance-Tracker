@@ -126,3 +126,6 @@ MDScreen:
                 DrawerClickableItem:
                     icon: "cog"
                     text: "Settings"
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "settings"
