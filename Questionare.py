@@ -23,6 +23,25 @@ class MainApp(MDApp):
         insurance = self.root.get_screen('questionare').ids.insurance.text
         savings = self.root.get_screen('questionare').ids.savings.text
         misc = self.root.get_screen('questionare').ids.misc.text
+        cardname = self.root.get_screen('questionare').ids.cardname.text
+        cardnumber = self.root.get_screen('questionare').ids.cardnumber.text
+        expirationdate = self.root.get_screen('questionare').ids.expirationdate.text
+        ficoscore = self.root.get_screen('questionare').ids.ficoscore.text
+        tranaction1date = self.root.get_screen('questionare').ids.tranaction1date.text
+        transaction1name = self.root.get_screen('questionare').ids.transaction1name.text
+        transaction1ammount = self.root.get_screen('questionare').ids.transaction1ammount.text
+        tranaction2date = self.root.get_screen('questionare').ids.tranaction2date.text
+        transaction2name = self.root.get_screen('questionare').ids.transaction2name.text
+        transaction2ammount = self.root.get_screen('questionare').ids.transaction2ammount.text
+        tranaction3date = self.root.get_screen('questionare').ids.tranaction3date.text
+        transaction3name = self.root.get_screen('questionare').ids.transaction3name.text
+        transaction3ammount = self.root.get_screen('questionare').ids.transaction3ammount.text
+        tranaction4date = self.root.get_screen('questionare').ids.tranaction4date.text
+        transaction4name = self.root.get_screen('questionare').ids.transaction4name.text
+        transaction4ammount = self.root.get_screen('questionare').ids.transaction4ammount.text
+        tranaction5date = self.root.get_screen('questionare').ids.tranaction5date.text
+        transaction5name = self.root.get_screen('questionare').ids.transaction5name.text
+        transaction5ammount = self.root.get_screen('questionare').ids.transaction5ammount.text
         
         # Write the data to a file
         with open("user_data.txt", "w") as file:
@@ -35,6 +54,25 @@ class MainApp(MDApp):
             file.write(f"Insurance: {insurance}\n")
             file.write(f"Savings: {savings}\n")
             file.write(f"Misc: {misc}\n")
+            file.write(f"Cardname:{cardname}\n")
+            file.write(f"Cardnumber:{cardnumber}\n")
+            file.write(f"Expiration date:{expirationdate}\n")
+            file.write(f"Fico Score:{ficoscore}\n")
+            file.write(f"Transaction 1 date:{tranaction1date}\n")
+            file.write(f"Transaction 1 name:{transaction1name}\n")
+            file.write(f"Transaction 1 ammount:{transaction1ammount}\n")
+            file.write(f"Transaction 2 date:{tranaction2date}\n")
+            file.write(f"Transaction 2 name:{transaction2name}\n")
+            file.write(f"Transaction 2 ammount:{transaction2ammount}\n")
+            file.write(f"Transaction 3 date:{tranaction3date}\n")
+            file.write(f"Transaction 3 name:{transaction3name}\n")
+            file.write(f"Transaction 3 ammount:{transaction3ammount}\n")
+            file.write(f"Transaction 4 date:{tranaction4date}\n")
+            file.write(f"Transaction 4 name:{transaction4name}\n")
+            file.write(f"Transaction 4 ammount:{transaction4ammount}\n")
+            file.write(f"Transaction 5 date:{tranaction5date}\n")
+            file.write(f"Transaction 5 name:{transaction5name}\n")
+            file.write(f"Transaction 5 ammount:{transaction5ammount}\n")
 
         # Show a confirmation dialog
         self.show_confirmation_dialog()

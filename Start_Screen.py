@@ -13,6 +13,10 @@ from kivymd.uix.datatables import MDDataTable
 from kivymd_extensions.akivymd.uix.charts import AKPieChart
 from kivy.metrics import dp
 from decimal import Decimal, ROUND_HALF_UP
+import webbrowser
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDRaisedButton
+from kivy.app import App
 
 # Enable the virtual keyboard
 Config.set('kivy', 'keyboard_mode', 'multi')
@@ -52,11 +56,68 @@ def read_csv_data(file_path, user_email):
 class Start_Screen(MDApp):
     regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
+    def change_password(self, current_password, new_password, confirm_password):
+        global current_user_email
+
+        if current_password == "" or new_password == "" or confirm_password == "":
+            self.show_dialog("Error", "All fields are required.")
+            return
+
+        if new_password != confirm_password:
+            self.show_dialog("Error", "New passwords do not match.")
+            return
+
+        try:
+            user_data = []
+            password_updated = False
+
+            with open('user_data.csv', mode='r') as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    if row[0] == current_user_email and row[1] == current_password:
+                        row[1] = new_password
+                        password_updated = True
+                    user_data.append(row)
+
+            if password_updated:
+                with open('user_data.csv', mode='w', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerows(user_data)
+                self.show_dialog("Success", "Password changed successfully.")
+
+            # Navigate back to the login screen
+                self.root.current = 'login'
+            else:
+                self.show_dialog("Error", "Incorrect current password.")
+
+        except Exception as e:
+            print(f"Error while updating password: {e}")
+            self.show_dialog("Error", "An error occurred while updating the password.")
+
+    def show_dialog(self, title, text):
+        if not hasattr(self, '_dialog'):
+            self._dialog = None
+    
+        if self._dialog:
+            self._dialog.dismiss()
+
+        self._dialog = MDDialog(
+            title=title,
+            text=text,
+            buttons=[
+                MDRaisedButton(
+                    text="OK",
+                    on_release=lambda x: self._dialog.dismiss()
+                )
+            ],
+        )
+        self._dialog.open()
+    
     def build(self):
         screen_manager = ScreenManager()
 
         # Load KV files
-        kv_files = ["main.kv", "login.kv", "Signup.kv", "Questionare.kv", "UserInformation.kv", "Dash.kv"]
+        kv_files = ["main.kv", "login.kv", "Signup.kv", "Questionare.kv", "UserInformation.kv", "Dash.kv", "rickroll.kv", "settings.kv", "passwordchange.kv"]
         for kv in kv_files:
             if os.path.exists(kv):
                 loaded_widget = Builder.load_file(kv)
@@ -64,6 +125,9 @@ class Start_Screen(MDApp):
                     screen_manager.add_widget(loaded_widget)
 
         return screen_manager
+
+    def open_youtube_link(self):
+        webbrowser.open("https://youtu.be/dQw4w9WgXcQ?si=Obf1FUsbZsDX8-Ls")
 
     def send_data(self, email_field, password_field):
         email = email_field.text
@@ -88,11 +152,30 @@ class Start_Screen(MDApp):
         insurance = self.root.get_screen('questionare').ids.insurance.text
         savings = self.root.get_screen('questionare').ids.savings.text
         misc = self.root.get_screen('questionare').ids.misc.text
+        cardname = self.root.get_screen('questionare').ids.cardname.text
+        cardnumber = self.root.get_screen('questionare').ids.cardnumber.text
+        expirationdate = self.root.get_screen('questionare').ids.expirationdate.text
+        ficoscore = self.root.get_screen('questionare').ids.ficoscore.text
+        tranaction1date = self.root.get_screen('questionare').ids.tranaction1date.text
+        transaction1name = self.root.get_screen('questionare').ids.transaction1name.text
+        transaction1ammount = self.root.get_screen('questionare').ids.transaction1ammount.text
+        tranaction2date = self.root.get_screen('questionare').ids.tranaction2date.text
+        transaction2name = self.root.get_screen('questionare').ids.transaction2name.text
+        transaction2ammount = self.root.get_screen('questionare').ids.transaction2ammount.text
+        tranaction3date = self.root.get_screen('questionare').ids.tranaction3date.text
+        transaction3name = self.root.get_screen('questionare').ids.transaction3name.text
+        transaction3ammount = self.root.get_screen('questionare').ids.transaction3ammount.text
+        tranaction4date = self.root.get_screen('questionare').ids.tranaction4date.text
+        transaction4name = self.root.get_screen('questionare').ids.transaction4name.text
+        transaction4ammount = self.root.get_screen('questionare').ids.transaction4ammount.text
+        tranaction5date = self.root.get_screen('questionare').ids.tranaction5date.text
+        transaction5name = self.root.get_screen('questionare').ids.transaction5name.text
+        transaction5ammount = self.root.get_screen('questionare').ids.transaction5ammount.text
 
         # Save data as a CSV file
         with open("user_data.csv", mode="a", newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([email, password, income, monthly_bills, loans, entertainment, rent, groceries, insurance, misc, savings])
+            writer.writerow([email, password, income, monthly_bills, loans, entertainment, rent, groceries, insurance, misc, savings, cardname, cardnumber, expirationdate, ficoscore, tranaction1date, transaction1name, transaction1ammount, tranaction2date, transaction2name, transaction2ammount, tranaction3date, transaction3name, transaction3ammount, tranaction4date, transaction4name, transaction4ammount, tranaction5date, transaction5name, transaction5ammount])
 
             self.show_confirmation_dialog()
 
@@ -273,6 +356,19 @@ class Start_Screen(MDApp):
             print(f"Sum of percentages: {sum(rounded_data.values())}")
         except Exception as e:
             print(f"Error in populate_pie_chart: {e}")
+
+
+    def sign_out(self):
+        # Logic for signing out (e.g., clearing current_user_email)
+        global current_user_email
+        current_user_email = None
+        self.root.current = "login"  # Navigate back to the login screen
+
+    def leave_application(self):
+        # Logic for exiting the app
+        App.get_running_app().stop()
+        Window.close()
+
 
 if __name__ == '__main__':
     Start_Screen().run()

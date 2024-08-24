@@ -1,0 +1,28 @@
+Screen:
+    name: "rickroll"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: [0.1, 0.1, 0.1, 1]  # Adjust text color
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "login"
+
+         # The following lines are for our logo...
+        Image:
+            source: "forgotPasswordMeme.jpg"
+            size_hint: .8, .8
+            pos_hint: {"center_x": .5, "center_y": .65}
+
+    MDTextButton:
+        text: "Click Here!"
+        pos_hint: {"center_x": .5, "center_y": .28}
+        color: [68/255, 78/255, 132/255, 1]
+        font_size: "12sp"
+        font_name: "Roboto"
+        on_release: app.open_youtube_link()

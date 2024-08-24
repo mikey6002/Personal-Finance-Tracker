@@ -1,0 +1,71 @@
+Screen:
+    name: "settings"
+    MDFloatLayout:
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: [0.1, 0.1, 0.1, 1]  # Adjust text color
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "dashboard"
+
+        MDLabel:
+            text: "What would you like to do?"
+            font_name: "Roboto"
+            font_size: "23sp"
+            pos_hint: {"center_x": .6, "center_y": .85}
+            color: [0, 0, 0.23, 1]  # Adjusted color format
+        
+        Button:
+            text: "Change Password"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .65}
+            background_color: [0.761, 0.592, 0.812, 1]  # Light gray color
+            color: [0, 0, 0, 1]  # Black text
+            font_name: "Roboto"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "passwordchange"
+            canvas.before:
+                Color:
+                    rgba: [0.761, 0.592, 0.812, 1]  # Light gray color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        Button:
+            text: "Sign Out"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .55}
+            background_color: [0.761, 0.592, 0.812, 1]  # Light gray color
+            color: [0, 0, 0, 1]  # Black text
+            font_name: "Roboto"
+            on_release:
+                app.sign_out()
+            canvas.before:
+                Color:
+                    rgba: [0.761, 0.592, 0.812, 1]  # Light gray color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        Button:
+            text: "Leave Application"
+            size_hint: .66, .065
+            pos_hint: {"center_x": .5, "center_y": .45}
+            background_color: [0.761, 0.592, 0.812, 1]  # Light gray color
+            color: [0, 0, 0, 1]  # Black text
+            font_name: "Roboto"
+            on_release:
+                app.leave_application()
+            canvas.before:
+                Color:
+                    rgba: [0.761, 0.592, 0.812, 1]  # Light gray color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
