@@ -41,33 +41,12 @@ BoxLayout:
                 radius: [dp(10), dp(10), dp(10), dp(10)]
 
         MDRaisedButton:
-            text: "1M"
-            md_bg_color: (1, 1, 1, 1)  # Transparent background
-            text_color: (0, 0, 0, 1)  # Text color
-            size_hint: None, None
-            elevation: 0
-
-
-        MDRaisedButton:
-            text: "6M"
+            text: "Current"
             md_bg_color: (1, 1, 1, 1)  # Black
             text_color: (0, 0, 0, 1)  # Text color
             elevation: 0
-            size_hint: None, None
-
-        MDRaisedButton:
-            text: "1Y"
-            md_bg_color: (1, 1, 1, 1)  # Black
-            text_color: (0, 0, 0, 1)  # Text color
-            elevation: 0
-            size_hint: None, None
-
-        MDRaisedButton:
-            text: "ALL TIME"
-            md_bg_color: (1, 1, 1, 1)  # Black
-            text_color: (0, 0, 0, 1)  # Text color
-            elevation: 0
-            size_hint: None, None
+            size_hint_x: 1  # Expand horizontally
+            size_hint_y: 1  # Expand vertically
             text_size: self.size  # Allow text to wrap
 
 
@@ -94,7 +73,7 @@ BoxLayout:
             size: dp(300), dp(300)
 
         MDLabel:
-            text: "ALL TIME\nTOTAL EXPENSES\n$8,400,200"
+            text: app.income_display
             halign: 'center'
             font_style: 'H6'
             size_hint_y: None
