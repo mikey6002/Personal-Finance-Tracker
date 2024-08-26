@@ -1,0 +1,137 @@
+Screen:
+    name: "budget"
+    MDFloatLayout:
+    #MDIconButton: 
+        #icon: "arrow-left"
+        #pos_hint: {"center_y": .95}
+        #user_font_size: "30sp"
+       # theme_text_color: "Custom"
+        #text_color: [0.1, 0.1, 0.1, 1]  # Adjust text color
+        #on_release:
+        #    root.manager.transition.direction = "right"
+        #    root.manager.current = "dashboard"
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+
+    
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+        canvas.before:
+            Color:
+                rgba: 0.761, 0.592, 0.812, 1  # Purple background color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                
+        
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_y": 1.}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: [0.1, 0.1, 0.1, 1]  # Adjust text color
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "dashboard"
+
+        MDLabel:
+            text: "Spending Tracker"
+            halign: 'center'
+            font_style: 'H4'
+            bold: True
+            size_hint_y: None
+            height: dp(35)
+
+        MDLabel:
+            text: "Expenses"
+            halign: 'center'
+            font_style: 'H5'
+            size_hint_y: None
+            height: dp(40)
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(50)
+            padding: dp(10)
+            spacing: dp(10)
+            pos_hint: {'center_x': 0.5}
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1  # White background color for the container
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(10), dp(10), dp(10), dp(10)]
+
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size_hint_x: 0.95
+            size: dp(300), dp(300)
+            pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+            radius: [dp(10), dp(10), dp(10), dp(10)]
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1  # White background color for the container
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(5), dp(5), dp(5), dp(5)]
+
+            MDBoxLayout:
+                id: bar_chart_box
+                adaptive_height: True
+                size_hint: 1, 1
+                padding: dp(5)
+                orientation: "vertical"
+                size: dp(300), dp(300)
+
+            MDLabel:
+                text: 
+                halign: 'center'
+                font_style: 'H6'
+                size_hint_y: None
+                height: dp(40)
+                padding: dp(10), dp(10)
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            padding: dp(10)
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1  # White background color for the container
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(10), dp(10), dp(10), dp(10)]
+
+            MDLabel:
+                text: "Top Spending Categories"
+                halign: 'center'
+                font_style: 'H5'
+                size_hint_y: None
+                height: dp(40)
+                padding: dp(10), dp(10)
+            MDBoxLayout:
+                id: categories_table
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(10)
+
+            ScrollView:
+                size_hint_y: None
+                height: dp(175)  # Adjust this height to fit your design
+
+                MDList:
+                    id: category_list
+
+
+            
