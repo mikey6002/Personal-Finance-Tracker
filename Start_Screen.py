@@ -384,24 +384,33 @@ class Start_Screen(MDApp):
             return
 
         bar_chart_data = []
+        total_expense = 0
         try:
             with open(csv_file_path, newline='') as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
                     if row['email'] == current_user_email:
                         for key, value in row.items():
-                            if key not in ["email", "password","savings"] and value and value.replace('.', '').isdigit():
+                            if key not in ["email", "password", "savings","income"] and value and value.replace('.', '').isdigit():
+                                amount = float(value)
                                 bar_chart_data.append({
                                     'category': key,
-                                    'value': float(value)
+                                    'value': amount
                                 })
+                                total_expense += amount
                         break
             # Sort the data by value in descending order
             bar_chart_data.sort(key=lambda x: x['value'], reverse=True)
         except Exception as e:
             print(f"Error reading CSV file: {e}")
 
+        # Update the total expense label
+        budget_screen = self.root.get_screen('budget')
+        budget_screen.ids.total_expenseasd.text = f"Total expense is: ${total_expense:.2f}"
+
+        # Update the bar chart
         self.update_bar_chart(bar_chart_data)
+
     # renders the bar chart
     def update_bar_chart(self, items):
         budget_screen = self.root.get_screen('budget')
@@ -451,37 +460,8 @@ class Start_Screen(MDApp):
             import traceback
             traceback.print_exc()
             
+    
 
-
-    def populate_categories_table(self, items):
-        budget_screen = self.root.get_screen('budget')
-        table_box = budget_screen.ids.categories_table
-        table_box.clear_widgets()
-
-        # Sort items by value in descending order
-        sorted_items = sorted(items, key=lambda x: x['value'], reverse=True)
-
-        # Take top 5 categories
-        top_categories = sorted_items[:5]
-
-        # Prepare data for the table
-        table_data = [
-            (item['category'], f"${item['value']:.2f}")
-            for item in top_categories
-        ]
-
-        table = MDDataTable(
-            size_hint=(1, None),
-            height=dp(250),  # Adjust as needed
-            column_data=[
-                ("Category", dp(100)),
-                ("Amount", dp(100))
-            ],
-            row_data=table_data,
-            use_pagination=False
-        )
-
-        table_box.add_widget(table)
 
 
 if __name__ == '__main__':
