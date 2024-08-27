@@ -17,12 +17,13 @@ import webbrowser
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
 from kivy.app import App
+from kivymd.uix.list import OneLineListItem
 
 # Enable the virtual keyboard
 Config.set('kivy', 'keyboard_mode', 'multi')
 
 from kivy.core.window import Window
-Window.size = (380, 640)
+Window.size = (380, 740)
 
 current_user_email = None
 def read_csv_data(file_path, user_email):
@@ -129,6 +130,7 @@ class Start_Screen(MDApp):
     def show_budget_screen(self):
         # Transition to the BudgetScreen
         self.root.current = "budget"
+        self.show_top_5_categories()
 
     def open_youtube_link(self):
         webbrowser.open("https://youtu.be/dQw4w9WgXcQ?si=Obf1FUsbZsDX8-Ls")
@@ -203,10 +205,7 @@ class Start_Screen(MDApp):
     def close_dialog(self, *args):
         self.dialog.dismiss()
         self.root.current = "dashboard"
-    
-    def close_dialog(self, *args):
-        self.dialog.dismiss()
-        self.root.current = "login"
+
     
     def close_dialog(self, *args):
         self.dialog.dismiss()
@@ -373,10 +372,11 @@ class Start_Screen(MDApp):
         App.get_running_app().stop()
         Window.close()
         
-        #Start of budget screen code
+    #Start of budget screen code
     #same as reading files and ignores email password and savings        
     def show_budget_goals(self):
-        self.root.current = 'budget'
+        self.root.current = "budget"
+        self.show_top_5_categories()  # Call show_top_5_categories here
         
         csv_file_path = 'user_data.csv'
         if not os.path.exists(csv_file_path):
@@ -460,9 +460,28 @@ class Start_Screen(MDApp):
             import traceback
             traceback.print_exc()
             
-    
+            
+    def show_top_5_categories(self):
+        print("show_top_5_categories function called")
+        data = read_csv_data('user_data.csv', current_user_email)
+        
+        if data:
+            print("Data retrieved:", data)  # Debug: Check retrieved data
+            sorted_data = sorted(data, key=lambda x: Decimal(x[1]), reverse=True)
+            top_5 = sorted_data[:5]
+            
+            print("Top 5 categories:", top_5)  # Debug: Check top 5 categories
+            
+            category_list = self.root.get_screen('budget').ids.category_list
+            category_list.clear_widgets()
+            
+            for category, amount in top_5:
+                item = OneLineListItem(text=f"{category}: {amount}")
+                category_list.add_widget(item)
+        else:
+            print("No data found for user.")
 
-
+            
 
 if __name__ == '__main__':
     Start_Screen().run()

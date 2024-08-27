@@ -66,6 +66,16 @@ Screen:
                     pos: self.pos
                     size: self.size
                     radius: [dp(10), dp(10), dp(10), dp(10)]
+            MDRaisedButton:
+                text: "This Months Spendings"
+                md_bg_color: (1, 1, 1, 1)  # Black
+                text_color: (0, 0, 0, 1)  # Text color
+                elevation: 0
+                size_hint_x: 1  # Expand horizontally
+                size_hint_y: 1  # Expand vertically
+                text_size: self.size  # Allow text to wrap
+                font_size: 30
+                
 
 
         MDBoxLayout:
@@ -120,12 +130,6 @@ Screen:
                 size_hint_y: None
                 height: dp(40)
                 padding: dp(10), dp(10)
-            MDBoxLayout:
-                id: categories_table
-                orientation: 'vertical'
-                size_hint_y: None
-                height: self.minimum_height
-                padding: dp(10)
 
             ScrollView:
                 size_hint_y: None
@@ -133,6 +137,8 @@ Screen:
 
                 MDList:
                     id: category_list
+
+
 
 
             
