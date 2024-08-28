@@ -1,0 +1,43 @@
+Screen:
+    name: "transactions"
+    MDCard:
+        size_hint: None, None
+        size: 400, 800  # Increased height of the card
+        md_bg_color: [0.0, 0.5, 1.0, 1.0]
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        elevation: 10
+        padding: 15
+        spacing: 15
+        orientation: 'vertical'
+
+        MDLabel:
+            id: opening_label
+            text: "Transactions"
+            font_size: 26
+            halign: 'left'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 20  # Increased padding to move it higher
+
+        BoxLayout:
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: 5
+            padding: 5, 0
+
+            MDRaisedButton:
+                id: categories
+                size_hint: None, None
+                size: 160, 50
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                text: 'All Categories'
+                color: (1, 1, 1, 1)
+                on_release: app.categories_dropper()
+                text_size: self.size
+                padding_x: 10
+                halign: 'right'
+
+        MDBoxLayout:
+            id: data_table_box
+            size_hint_y: None
+            height: dp(600)  # Increased height for the data table
