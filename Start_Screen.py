@@ -117,7 +117,7 @@ class Start_Screen(MDApp):
         screen_manager = ScreenManager()
 
         # Load KV files
-        kv_files = ["main.kv", "login.kv", "Signup.kv", "Questionare.kv", "UserInformation.kv", "Dash.kv", "rickroll.kv", "settings.kv", "passwordchange.kv", "transactions.kv" ]
+        kv_files = ["main.kv", "login.kv", "Signup.kv", "Questionare.kv", "UserInformation.kv", "Dash.kv", "rickroll.kv", "settings.kv", "passwordchange.kv", "transactions.kv"]
         for kv in kv_files:
             if os.path.exists(kv):
                 loaded_widget = Builder.load_file(kv)
