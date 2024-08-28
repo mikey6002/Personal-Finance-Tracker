@@ -6,7 +6,7 @@ class MainApp(MDApp):
         
         self.root = Builder.load_string(KV)
         
-        csv_file_path = 'transactionpage/user_data.csv'  # path of file
+        csv_file_path = 'user_data.csv'  # path of file
         if not os.path.exists(csv_file_path):
             print(f"File {csv_file_path} not found.")
             return
