@@ -118,7 +118,7 @@ class Start_Screen(MDApp):
         screen_manager = ScreenManager()
 
         # Load KV files
-        kv_files = ["main.kv", "login.kv", "Signup.kv", "Questionare.kv", "UserInformation.kv", "Dash.kv", "rickroll.kv", "settings.kv", "passwordchange.kv","budget.kv"]
+        kv_files = ["main.kv", "login.kv", "Signup.kv", "Questionare.kv", "UserInformation.kv", "Dash.kv", "rickroll.kv", "settings.kv", "passwordchange.kv","budget.kv", "transactions.kv"]
         for kv in kv_files:
             if os.path.exists(kv):
                 loaded_widget = Builder.load_file(kv)
@@ -283,7 +283,8 @@ class Start_Screen(MDApp):
                 use_pagination=True,
                 check=True,
                 column_data=[
-                    ("Category", dp(35)),
+                    ("Date", dp(35)),
+                    ("Name", dp(35)),
                     ("Amount", dp(30)),
                 ],
                 row_data=rows
@@ -292,7 +293,39 @@ class Start_Screen(MDApp):
         except KeyError as e:
             print(f"Error accessing data table: {e}")
             
+    def on_start(self):
+        # Call this function when the app starts
+        self.populate_transactions_table()
 
+    def populate_transactions_table(self):
+        # Example transaction data
+        rows = [
+            ("2024-08-01", "Grocery Store", "$120.00"),
+            ("2024-08-02", "Online Shopping", "$55.00"),
+            ("2024-08-03", "Restaurant", "$75.00"),
+        ]
+        
+        # Access the transactions screen and the data_table_box layout
+        transactions_screen = self.root.get_screen('transactions')
+        data_table_box = transactions_screen.ids.data_table_box
+
+        # Create the data table for transactions
+        transactions_table = MDDataTable(
+            size_hint=(1, 1),
+            use_pagination=True,
+            check=False,
+            column_data=[
+                ("Transaction Date", dp(30)),
+                ("Description", dp(40)),
+                ("Amount", dp(30)),
+            ],
+            row_data=rows,
+        )
+
+        # Add the data table to the data_table_box layout
+        data_table_box.add_widget(transactions_table)
+
+        
 
 
     def populate_pie_chart(self, rows):

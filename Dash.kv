@@ -115,6 +115,9 @@ MDScreen:
                 DrawerClickableItem:
                     icon: "account-cash"
                     text: "Transactions"
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        root.manager.current = "transactions"
                 
                 DrawerClickableItem:
                     icon: "chart-areaspline"

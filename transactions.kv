@@ -1,0 +1,20 @@
+Screen:
+    name: "transactions"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        MDLabel:
+            text: "Transactions"
+            font_style: "H5"
+            size_hint_y: None
+            height: dp(50)
+            halign: 'center'
+            valign: 'middle'
+        
+        BoxLayout:
+            id: data_table_box
+            orientation: 'vertical'
+            size_hint_y: None
+            height: dp(600)  # Adjusted height to ensure space is allocated for the table

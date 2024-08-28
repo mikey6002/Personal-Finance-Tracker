@@ -41,7 +41,26 @@ Screen:
                 font_size: "14sp"
                 cursor_width: "2sp"
                 multiline: False
-                password: True
+                password: False
+                write_tab: False
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .56}
+            TextInput: 
+                id: email
+                hint_text: "Email"
+                required: True
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: [0, 0, 0.23, 1]
+                cursor_color: [0, 0, 0.23, 1]
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                write_tab: False
 
         MDFloatLayout:
             size_hint: .7, .07
@@ -59,23 +78,9 @@ Screen:
                 cursor_width: "2sp"
                 multiline: False
                 password: True
+                write_tab: False
 
-
-        MDFloatLayout:
-            size_hint: .7, .07
-            pos_hint: {"center_x": .5, "center_y": .56}
-            TextInput: 
-                id: email
-                hint_text: "Email"
-                font_name: "Roboto"
-                size_hint_y: .75
-                pos_hint: {"center_x": .43, "center_y": .5}
-                background_color: 1, 1, 1, 0
-                foreground_color: [0, 0, 0.23, 1]
-                cursor_color: [0, 0, 0.23, 1]
-                font_size: "14sp"
-                cursor_width: "2sp"
-                multiline: False
+                
         Button:
             text: "Continue"
             size_hint: .66, .065
