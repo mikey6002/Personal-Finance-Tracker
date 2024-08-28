@@ -427,7 +427,7 @@ class Start_Screen(MDApp):
     #same as reading files and ignores email password and savings        
     def show_budget_goals(self):
         self.root.current = "budget"
-        self.show_top_5_categories()  # Call show_top_5_categories here
+        self.show_top_5_categories()
         
         csv_file_path = 'user_data.csv'
         if not os.path.exists(csv_file_path):
@@ -442,7 +442,9 @@ class Start_Screen(MDApp):
                 for row in reader:
                     if row['email'] == current_user_email:
                         for key, value in row.items():
-                            if key not in ["email", "password", "savings","income"] and value and value.replace('.', '').isdigit():
+                            if key not in ["email", "password", "savings", "income"] and \
+                            not key.startswith('t') and \
+                            value and value.replace('.', '').isdigit():
                                 amount = float(value)
                                 bar_chart_data.append({
                                     'category': key,
@@ -462,7 +464,6 @@ class Start_Screen(MDApp):
         # Update the bar chart
         self.update_bar_chart(bar_chart_data)
 
-    # renders the bar chart
     def update_bar_chart(self, items):
         budget_screen = self.root.get_screen('budget')
         budget_screen.ids.bar_chart_box.clear_widgets()
@@ -510,15 +511,20 @@ class Start_Screen(MDApp):
             print(f"Error in update_bar_chart: {e}")
             import traceback
             traceback.print_exc()
-            
-            
+
     def show_top_5_categories(self):
         print("show_top_5_categories function called")
-        data = read_csv_data('user_data.csv', current_user_email)
+        data = self.read_csv_data('user_data.csv', current_user_email)
         
         if data:
             print("Data retrieved:", data)  # Debug: Check retrieved data
-            sorted_data = sorted(data, key=lambda x: Decimal(x[1]), reverse=True)
+            # Filter out transaction data and non-numeric values
+            filtered_data = [(category, amount) for category, amount in data 
+                            if not category.startswith('t') and 
+                            category not in ["email", "password", "savings", "income"] and
+                            amount.replace('.', '').isdigit()]
+            
+            sorted_data = sorted(filtered_data, key=lambda x: float(x[1]), reverse=True)
             top_5 = sorted_data[:5]
             
             print("Top 5 categories:", top_5)  # Debug: Check top 5 categories
@@ -527,10 +533,22 @@ class Start_Screen(MDApp):
             category_list.clear_widgets()
             
             for category, amount in top_5:
-                item = OneLineListItem(text=f"{category}: {amount}")
+                item = OneLineListItem(text=f"{category}: ${float(amount):.2f}")
                 category_list.add_widget(item)
         else:
             print("No data found for user.")
+    def read_csv_data(self, file_path, user_email):
+        data = []
+        try:
+            with open(file_path, newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    if row['email'] == user_email:
+                        data = list(row.items())
+                        break
+        except Exception as e:
+            print(f"Error reading CSV file: {e}")
+        return data
 
             
 
