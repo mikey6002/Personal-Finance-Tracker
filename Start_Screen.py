@@ -298,7 +298,6 @@ class Start_Screen(MDApp):
         self.populate_transactions_table()
 
     def populate_transactions_table(self):
-            ("2024-08-01", "Grocery Store", "$120.00"),
         csv_file_path = 'user_data.csv'  # Update the path to your CSV file
         if not os.path.exists(csv_file_path):
             print(f"File {csv_file_path} not found.")
