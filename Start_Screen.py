@@ -298,32 +298,57 @@ class Start_Screen(MDApp):
         self.populate_transactions_table()
 
     def populate_transactions_table(self):
-        # Example transaction data
-        rows = [
             ("2024-08-01", "Grocery Store", "$120.00"),
-            ("2024-08-02", "Online Shopping", "$55.00"),
-            ("2024-08-03", "Restaurant", "$75.00"),
-        ]
+        csv_file_path = 'user_data.csv'  # Update the path to your CSV file
+        if not os.path.exists(csv_file_path):
+            print(f"File {csv_file_path} not found.")
+            return
+
+        table_data = []
+
+        # Open the CSV file and read the transactions
+        with open(csv_file_path, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            row = next(reader)  # Assuming only one row of data
+
+            for i in range(1, 6):  # For 10 transactions (t1 to t10)
+                date_key = f"t{i}date"
+                name_key = f"t{i}name"
+                amount_key = f"t{i}amount"
+
+                try:
+                    date_str = row[date_key]
+                    name = row[name_key]
+                    amount = row[amount_key].replace('$', '').replace(',', '')  # Handle $ and commas
+                    amount = float(amount)
+                    table_data.append((date_str, name, f"${amount:.2f}"))
+                except KeyError as e:
+                    print(f"Error: Missing data for transaction {i}.")
+                except ValueError as e:
+                    print(f"Error: Incorrect value format for transaction {i} amount.")
+
+        if table_data:
+                transactions_table = MDDataTable(
+                    size_hint=(1, 1),
+                    use_pagination=True,
+                    check=False,
+                    column_data=[
+                        ("Transaction Date", dp(30)),
+                        ("Description", dp(40)),
+                        ("Amount", dp(30)),
+                    ],
+                    row_data=table_data,
+                )
+
         
-        # Access the transactions screen and the data_table_box layout
+            # Access the transactions screen and the data_table_box layout
         transactions_screen = self.root.get_screen('transactions')
         data_table_box = transactions_screen.ids.data_table_box
 
-        # Create the data table for transactions
-        transactions_table = MDDataTable(
-            size_hint=(1, 1),
-            use_pagination=True,
-            check=False,
-            column_data=[
-                ("Transaction Date", dp(30)),
-                ("Description", dp(40)),
-                ("Amount", dp(30)),
-            ],
-            row_data=rows,
-        )
-
-        # Add the data table to the data_table_box layout
         data_table_box.add_widget(transactions_table)
+
+
+
 
         
 
