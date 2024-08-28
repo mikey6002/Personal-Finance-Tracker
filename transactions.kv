@@ -1,20 +1,29 @@
 Screen:
     name: "transactions"
-    BoxLayout:
+    MDBoxLayout:
         orientation: 'vertical'
         padding: 10
         spacing: 10
+        md_bg_color: [0, 0.80, 1, 1]  # White background (RGBA)
 
         MDLabel:
             text: "Transactions"
             font_style: "H5"
             size_hint_y: None
             height: dp(50)
-            halign: 'center'
+            halign: 'left'
             valign: 'middle'
-        
+            padding_x: dp(10)
+            theme_text_color: "Custom"
+            text_color: [0, 0, 0, 1]  # Black text
+
         BoxLayout:
             id: data_table_box
             orientation: 'vertical'
             size_hint_y: None
-            height: dp(600)  # Adjusted height to ensure space is allocated for the table
+            height: dp(575)
+            md_bg_color: [0.95, 0.60, 0.95, 1]  # Light grey background
+
+        Widget:
+            size_hint_y: None
+            height: dp(65)

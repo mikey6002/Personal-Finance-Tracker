@@ -332,9 +332,9 @@ class Start_Screen(MDApp):
                     use_pagination=True,
                     check=False,
                     column_data=[
-                        ("Transaction Date", dp(30)),
-                        ("Description", dp(40)),
-                        ("Amount", dp(30)),
+                        ("Date", dp(13)),
+                        ("Description", dp(35)),
+                        ("Amount", dp(19)),
                     ],
                     row_data=table_data,
                 )
@@ -345,12 +345,6 @@ class Start_Screen(MDApp):
         data_table_box = transactions_screen.ids.data_table_box
 
         data_table_box.add_widget(transactions_table)
-
-
-
-
-        
-
 
     def populate_pie_chart(self, rows):
         print("Populating pie chart...")
