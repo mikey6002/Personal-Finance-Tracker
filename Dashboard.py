@@ -11,7 +11,7 @@ import os
 
 
 Window.fullscreen = False
-Window.size = (380, 640)
+Window.size = (380, 740)
 
 class ContentNavigationDrawer(MDScrollView):
     screen_manager = ObjectProperty()

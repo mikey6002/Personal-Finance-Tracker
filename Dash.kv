@@ -98,6 +98,7 @@ MDScreen:
                     text: "Jake The Dog"
                     spacing: "4dp"
                     padding: "12dp", 0, 0, "56dp"
+            
 
                 DrawerClickableItem:
                     icon: "account"
@@ -122,6 +123,9 @@ MDScreen:
                 DrawerClickableItem:
                     icon: "checkbook-arrow-left"
                     text: "Budget Goal"
+                    on_release:
+                        root.manager.transition.direction = "left"
+                        app.show_budget_goals()
                 
                 DrawerClickableItem:
                     icon: "cog"
@@ -129,3 +133,4 @@ MDScreen:
                     on_release:
                         root.manager.transition.direction = "left"
                         root.manager.current = "settings"
+                

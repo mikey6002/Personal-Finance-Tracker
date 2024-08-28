@@ -10,19 +10,20 @@ from kivy.clock import Clock
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.datatables import MDDataTable
-from kivymd_extensions.akivymd.uix.charts import AKPieChart
+from kivymd_extensions.akivymd.uix.charts import AKPieChart,AKBarChart
 from kivy.metrics import dp
 from decimal import Decimal, ROUND_HALF_UP
 import webbrowser
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
 from kivy.app import App
+from kivymd.uix.list import OneLineListItem
 
 # Enable the virtual keyboard
 Config.set('kivy', 'keyboard_mode', 'multi')
 
 from kivy.core.window import Window
-Window.size = (380, 640)
+Window.size = (380, 740)
 
 current_user_email = None
 def read_csv_data(file_path, user_email):
@@ -117,7 +118,7 @@ class Start_Screen(MDApp):
         screen_manager = ScreenManager()
 
         # Load KV files
-        kv_files = ["main.kv", "login.kv", "Signup.kv", "Questionare.kv", "UserInformation.kv", "Dash.kv", "rickroll.kv", "settings.kv", "passwordchange.kv"]
+        kv_files = ["main.kv", "login.kv", "Signup.kv", "Questionare.kv", "UserInformation.kv", "Dash.kv", "rickroll.kv", "settings.kv", "passwordchange.kv","budget.kv"]
         for kv in kv_files:
             if os.path.exists(kv):
                 loaded_widget = Builder.load_file(kv)
@@ -125,6 +126,11 @@ class Start_Screen(MDApp):
                     screen_manager.add_widget(loaded_widget)
 
         return screen_manager
+    
+    def show_budget_screen(self):
+        # Transition to the BudgetScreen
+        self.root.current = "budget"
+        self.show_top_5_categories()
 
     def open_youtube_link(self):
         webbrowser.open("https://youtu.be/dQw4w9WgXcQ?si=Obf1FUsbZsDX8-Ls")
@@ -199,10 +205,7 @@ class Start_Screen(MDApp):
     def close_dialog(self, *args):
         self.dialog.dismiss()
         self.root.current = "dashboard"
-    
-    def close_dialog(self, *args):
-        self.dialog.dismiss()
-        self.root.current = "login"
+
     
     def close_dialog(self, *args):
         self.dialog.dismiss()
@@ -368,7 +371,117 @@ class Start_Screen(MDApp):
         # Logic for exiting the app
         App.get_running_app().stop()
         Window.close()
+        
+    #Start of budget screen code
+    #same as reading files and ignores email password and savings        
+    def show_budget_goals(self):
+        self.root.current = "budget"
+        self.show_top_5_categories()  # Call show_top_5_categories here
+        
+        csv_file_path = 'user_data.csv'
+        if not os.path.exists(csv_file_path):
+            print(f"File {csv_file_path} not found.")
+            return
 
+        bar_chart_data = []
+        total_expense = 0
+        try:
+            with open(csv_file_path, newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    if row['email'] == current_user_email:
+                        for key, value in row.items():
+                            if key not in ["email", "password", "savings","income"] and value and value.replace('.', '').isdigit():
+                                amount = float(value)
+                                bar_chart_data.append({
+                                    'category': key,
+                                    'value': amount
+                                })
+                                total_expense += amount
+                        break
+            # Sort the data by value in descending order
+            bar_chart_data.sort(key=lambda x: x['value'], reverse=True)
+        except Exception as e:
+            print(f"Error reading CSV file: {e}")
+
+        # Update the total expense label
+        budget_screen = self.root.get_screen('budget')
+        budget_screen.ids.total_expenseasd.text = f"Total expense is: ${total_expense:.2f}"
+
+        # Update the bar chart
+        self.update_bar_chart(bar_chart_data)
+
+    # renders the bar chart
+    def update_bar_chart(self, items):
+        budget_screen = self.root.get_screen('budget')
+        budget_screen.ids.bar_chart_box.clear_widgets()
+        
+        try:
+            categories = []
+            values = []
+            x_values = []
+            
+            for index, item in enumerate(items, start=1):
+                if 'category' in item and 'value' in item:
+                    try:
+                        value = float(item['value'])
+                        if value > 0:
+                            categories.append(item['category'])
+                            values.append(value)
+                            x_values.append(index)  # Use numeric index as x-value
+                            print(f"Added category: {item['category']}, value: {value}")
+                    except ValueError:
+                        print(f"Skipping invalid value: {item['value']}")
+            
+            if not categories or not values:
+                print("No valid data available for the bar chart.")
+                return
+            
+            print(f"Categories: {categories}")
+            print(f"Values: {values}")
+            print(f"X-values: {x_values}")
+            
+            bar_chart = AKBarChart(
+                x_values=x_values,
+                y_values=values,
+                x_labels=categories,  # Use categories as labels
+                size_hint=(1, 1),
+                size=(dp(300), dp(300)),
+                labels=True,
+                anim=True,
+                label_size=9.3,
+                bars_spacing=20
+            )
+            
+            budget_screen.ids.bar_chart_box.add_widget(bar_chart)
+            print("Bar chart populated successfully.")
+        except Exception as e:
+            print(f"Error in update_bar_chart: {e}")
+            import traceback
+            traceback.print_exc()
+            
+            
+    def show_top_5_categories(self):
+        print("show_top_5_categories function called")
+        data = read_csv_data('user_data.csv', current_user_email)
+        
+        if data:
+            print("Data retrieved:", data)  # Debug: Check retrieved data
+            sorted_data = sorted(data, key=lambda x: Decimal(x[1]), reverse=True)
+            top_5 = sorted_data[:5]
+            
+            print("Top 5 categories:", top_5)  # Debug: Check top 5 categories
+            
+            category_list = self.root.get_screen('budget').ids.category_list
+            category_list.clear_widgets()
+            
+            for category, amount in top_5:
+                item = OneLineListItem(text=f"{category}: {amount}")
+                category_list.add_widget(item)
+        else:
+            print("No data found for user.")
+
+            
 
 if __name__ == '__main__':
     Start_Screen().run()
