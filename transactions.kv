@@ -1,11 +1,23 @@
 Screen:
     name: "transactions"
+
+    
     MDBoxLayout:
         orientation: 'vertical'
         padding: 10
         spacing: 10
         md_bg_color: [0, 0.80, 1, 1]  # White background (RGBA)
 
+        MDIconButton: 
+            icon: "arrow-left"
+            pos_hint: {"center_y": 1.}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: [0.1, 0.1, 0.1, 1]  # Adjust text color
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "dashboard"
+                
         MDLabel:
             text: "Transactions"
             font_style: "H5"

@@ -511,6 +511,10 @@ class Start_Screen(MDApp):
             print(f"Error in update_bar_chart: {e}")
             import traceback
             traceback.print_exc()
+        
+    def go_back(self):
+        # This method will be called when the back button is pressed
+        self.root.current = "dashboard"  # or another screen you'd like to navigate back to
 
     def show_top_5_categories(self):
         print("show_top_5_categories function called")
