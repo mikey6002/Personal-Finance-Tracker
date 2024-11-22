@@ -45,7 +45,6 @@ Run the file Start_Screen.py
 
 ## Demo
 
-Personal Finance Log-in / Sig-up page demo
 ![Demo GIF](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXJ4YjJqOG55OTRyYjVmbmQ1ZjB5c3ZlNTBxOTNpZzAzcms0M3ppNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s3jsD5Tl6QoTkRbUnL/giphy.gif)
 
 
