@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/fa1c76e8-5a7d-477a-a5f3-6c38911ddf07)
 
 # Personal Finance Banking App
 This project was developed as part of the Tech Wise program in collaboraton with Google and Carnegie Mellon University's end-of-quarter semester project. It was a fun and engaging challenge that allowed us to apply our skills in Python, KivyMD, and teamwork.
@@ -45,10 +46,10 @@ Run the file Start_Screen.py
 
 ## Demo
 
-Personal Finance Log-in / Sig-up page demo
 ![Demo GIF](https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXJ4YjJqOG55OTRyYjVmbmQ1ZjB5c3ZlNTBxOTNpZzAzcms0M3ppNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s3jsD5Tl6QoTkRbUnL/giphy.gif)
 
-
+## Pictures 
+![image](https://github.com/user-attachments/assets/9e2b522b-b4d6-4bb4-a5d5-fdbe21ff909d)
 
 
 ## Authors
